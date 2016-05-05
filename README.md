@@ -1,0 +1,1 @@
+These are three small projects for The Odin Project basic ruby section.
