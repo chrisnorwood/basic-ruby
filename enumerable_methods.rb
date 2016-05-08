@@ -61,11 +61,20 @@ module Enumerable
     return count
   end
 
-  def my_map &block
+  def my_map proc = nil, &block
     result = []
 
-    self.my_each { |i| result << yield(i) }
-
+    # If both block and proc supplied, apply block to result of proc,
+    # otherwise block will not be called
+    self.my_each do |i|
+      if block_given? && proc
+        proc_value = proc.call(i)
+        result << yield(proc_value)
+      else
+        result << proc.call(i)
+      end
+    end
+    
     return result
   end
 
