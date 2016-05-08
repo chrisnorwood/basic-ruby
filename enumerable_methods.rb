@@ -78,3 +78,8 @@ module Enumerable
   end
     
 end
+
+
+def multiply_els array
+  array.my_inject { |product, obj| product * obj }
+end
