@@ -1,11 +1,14 @@
-def bubble_sort source_array
-  
+# THESE METHODS ARE 'DESTRUCTIVE' to source array
+
+def bubble_sort array
+
   bubble_sort_by(array) { |left, right| left - right }
 
   array
 end
 
-def bubble_sort_by source_array, &block
+def bubble_sort_by array, &block
+
   (array.length).times do
     array.each_with_index do |value, index|
       # checks if next element in array exists, and
@@ -16,6 +19,6 @@ def bubble_sort_by source_array, &block
       end
     end
   end
-  
+
   array
 end
