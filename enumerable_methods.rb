@@ -29,7 +29,12 @@ module Enumerable
 
   def my_all? &block
     result = true
-    self.my_each { |i| result = false if !yield(i) }
+    
+    if block_given?
+      self.my_each { |i| result = false if !yield(i) }
+    else
+      self.my_each { |i| result = false if i == nil || i == false}
+    end
 
     return result
   end
@@ -63,16 +68,19 @@ module Enumerable
   end
 
   def my_map proc = nil, &block
+    return self.to_enum unless block_given? || proc
+
     result = []
 
     # If both block and proc supplied, apply block to result of proc,
-    # otherwise block will not be called
     self.my_each do |i|
       if block_given? && proc
         proc_value = proc.call(i)
         result << yield(proc_value)
-      else
+      elsif proc
         result << proc.call(i)
+      else
+        result << yield(i)
       end
     end
     
