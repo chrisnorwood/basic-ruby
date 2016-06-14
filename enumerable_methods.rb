@@ -1,6 +1,7 @@
 module Enumerable
   
   def my_each &block
+    return self.to_enum unless block_given?
     # self.size-1 is last index available in input
     for i in 0..(self.size-1)
       yield self[i]

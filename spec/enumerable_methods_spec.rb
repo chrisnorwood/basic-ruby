@@ -9,7 +9,7 @@ describe Enumerable do
   describe "#my_each" do
     context "without block" do
       it "returns an enumerator" do
-        expect(array.my_each).to be_instance_of Enumerable
+        expect(array.my_each).to be_instance_of Enumerator
       end
     end
 
